@@ -17,7 +17,8 @@ DEVICES = $(BUILDDIR)/devices/dspic33e.o \
 		  $(BUILDDIR)/devices/pic18fj.o \
 		  $(BUILDDIR)/devices/pic24fjxxxga0xx.o \
 			$(BUILDDIR)/devices/pic24fjxxxga3xx.o \
-		  $(BUILDDIR)/devices/pic32.o $(BUILDDIR)/devices/pic32_pe.o
+		  $(BUILDDIR)/devices/pic32.o $(BUILDDIR)/devices/pic32_pe.o \
+		$(BUILDDIR)/devices/pic16f150x.o 
 
 a10: CFLAGS += -DBOARD_A10
 raspberrypi: CFLAGS += -DBOARD_RPI
