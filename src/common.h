@@ -66,6 +66,12 @@ struct flags_struct {
    int program_only = 0;
 };
 
+struct detailed_subfamily_t{
+	uint32_t device_id;
+	uint8_t detailed_subfamily;
+	uint8_t latch_size;
+};
+
 extern struct flags_struct flags;
 
 #endif /* COMMON_H_ */

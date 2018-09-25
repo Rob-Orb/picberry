@@ -29,12 +29,6 @@ using namespace std;
 #define SF_PIC12F1822		0x01
 #define SF_PIC16LF1826		0x02
 
-struct detailed_subfamily_t{
-	uint32_t    device_id;
-	uint8_t		detailed_subfamily;
-	uint8_t		latch_size;
-};
-
 class pic10f322: public Pic{
 
 	public:

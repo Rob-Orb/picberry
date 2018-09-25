@@ -47,6 +47,7 @@
 #include "devices/pic24fjxxxga0xx.h"
 #include "devices/pic24fjxxxga3xx.h"
 #include "devices/pic32.h"
+#include "devices/pic16f150x.h"
 
 int                 mem_fd;
 void                *gpio_map;
@@ -255,6 +256,8 @@ int main(int argc, char *argv[])
             pic = new pic32(SF_PIC32MZ);
         else if(strcmp(family,"pic32mk") == 0)
             pic = new pic32(SF_PIC32MK);   
+	else if(strcmp(family,"pic16f150x") == 0)
+	    pic = new pic16f150x();
         else{
             cerr << "ERROR: PIC family not correctly chosen." << endl;
             cerr << "Available families:" << endl
