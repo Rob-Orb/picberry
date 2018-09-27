@@ -58,16 +58,16 @@ class pic16f150x: public Pic{
 		* DEVICES SECTION
 		*                    	ID       NAME           MEMSIZE
 		*/
-		pic_device piclist[10] = {{0x166,  "PIC12F1501", 0x800},
-								{0x16C,  "PIC12LF1501", 0x800},
-								{0x167,  "PIC16F1503", 0x400},
-								{0x16D,  "PIC16LF1503", 0x400},
-								{0x168,  "PIC16F1507", 0x400},
-								{0x16E,  "PIC16LF1507", 0x400},
-								{0x169,  "PIC16F1508", 0x800},
-								{0x16F,  "PIC16LF1508", 0x800},
-								{0x16A,  "PIC16F1509", 0x800},
-								{0x170,  "PIC16LF1509", 0x800}
+		pic_device piclist[10] = {{0x166,  "PIC12F1501", 0x400},
+								{0x16C,  "PIC12LF1501", 0x400},
+								{0x167,  "PIC16F1503", 0x800},
+								{0x16D,  "PIC16LF1503", 0x800},
+								{0x168,  "PIC16F1507", 0x800},
+								{0x16E,  "PIC16LF1507", 0x800},
+								{0x169,  "PIC16F1508", 0x1000},
+								{0x16F,  "PIC16LF1508", 0x1000},
+								{0x16A,  "PIC16F1509", 0x2000},
+								{0x170,  "PIC16LF1509", 0x2000}
 								};
 		detailed_subfamily_t detailed_subfamily_table[10] = {
 			{0x166,  SF_PIC16F1501_7, 32},
