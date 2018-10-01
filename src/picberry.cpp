@@ -118,64 +118,76 @@ int main(int argc, char *argv[])
 
     while ((opt = getopt_long(argc, argv, "hS:l:g:c:s:f:r:w:ebdR",
                               long_options, &option_index)) != -1) {
-        switch (opt) {
-            case 0:
-                break;
-            case 'h':
-                usage();
-                exit(0);
-                break;
-            case 'S':
-                flags.client = 1;
-                server_port = atoi(optarg);
-                function = FXN_SERVER;
-                break;
-            case 'f':
-                family = optarg;
-                break;
-            case 'g':
-                pins = optarg;
-                break;
-            case 'l':
-                log = true;
-                logfile = optarg;
-                break;
-            case 'r':
-                outfile = optarg;
-                function |= FXN_READ;
-                break;
-            case 'c':
-                count = atoi(optarg);
-                break;
-            case 's':
-                start = atoi(optarg);
-                break;
-            case 'w':
-                infile = optarg;
-                function |= FXN_WRITE;
-                break;
-            case 'e':
-                function |= FXN_ERASE;
-                break;
-            case 'b':
-                function |= FXN_BLANKCHEK;
-                break;
-            case 'd':
-                function |= FXN_REGDUMP;
-                break;
-            case 'R':
-                function = FXN_RESET;
-                break;
-            default:
-                cout << endl;
-                usage();
-                exit(1);
-        }
+	    switch (opt) {
+		    case 0:
+			    break;
+		    case 'h':
+			    usage();
+			    exit(0);
+			    break;
+		    case 'S':
+			    flags.client = 1;
+			    server_port = atoi(optarg);
+			    function = FXN_SERVER;
+			    break;
+		    case 'f':
+			    family = optarg;
+			    break;
+		    case 'g':
+			    pins = optarg;
+			    break;
+		    case 'l':
+			    log = true;
+			    logfile = optarg;
+			    break;
+		    case 'r':
+			    if(optarg[0] != '-'){
+				    outfile = optarg;
+				    function |= FXN_READ;
+			    }else{
+				    cerr << "Wrong Read Output File, read the man page for more information" << endl;
+				    usage();
+				    exit(1);
+			    }
+			    break;
+		    case 'c':
+			    count = atoi(optarg);
+			    break;
+		    case 's':
+			    start = atoi(optarg);
+			    break;
+		    case 'w':
+			    if(optarg[0] != '-'){
+				    infile = optarg;
+				    function |= FXN_WRITE;
+			    }else{
+				    cerr << "Wrong Write Output File, read the man page for more information" << endl;
+				    usage();
+				    exit(1);
+			    }
+			    break;
+		    case 'e':
+			    function |= FXN_ERASE;
+			    break;
+		    case 'b':
+			    function |= FXN_BLANKCHEK;
+			    break;
+		    case 'd':
+			    function |= FXN_REGDUMP;
+			    break;
+		    case 'R':
+			    function = FXN_RESET;
+			    break;
+		    default:
+			    cout << endl;
+			    usage();
+			    exit(1);
+	    }
     }
 
     if (function & FXN_WRITE && !infile) {
-        cout << "Please specify an input file!" << endl;
-        exit(1);
+	    cout << "Please specify an input file!" << endl;
+	    exit(1);
     }
 
     /* if not in log mode, disable stdout line buffering */
