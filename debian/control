@@ -1,0 +1,13 @@
+Source: picberry
+Maintainer: Ulysse Vautier <ulysse.vautier@gmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 1.0.r
+Priority: optional
+Section: base
+
+Package: picberry
+Architecture: all
+Priority: optional
+Section: base
+Description: Pic Programmer on Raspberry Pi 
+ This binary gives your the power to program a Microchip PIC
