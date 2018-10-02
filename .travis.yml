@@ -10,7 +10,6 @@ env:
   - ORGANIZATION="Rob-Orb"
   - EMAIL="guillaume.beuzeboc@gmail.com"
   - REPO="rob-orb.github.io"
-  - FILES="README.md foo.txt bar.txt"
   - GH_REPO="github.com/${ORGANIZATION}/${REPO}.git"
 - secure: "put travis gem output here => http://docs.travis-ci.com/user/encryption-keys/"
 
