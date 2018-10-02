@@ -22,8 +22,7 @@ before_install:
 
 script:
     - docker exec -i roborb-soft bash -c "cd /var/tmp/ && debuild -uc -us"
-    - ls -lah ../*.deb
-    - echo "###################################"
     - ls -lah
+    - echo "###################################"
     - ls -lah ../
 
