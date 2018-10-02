@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Rob-Orb/picberry.svg?branch=master)](https://travis-ci.org/Rob-Orb/picberry)
+
 # picberry
 PIC Programmer using GPIO connector
 
@@ -13,7 +15,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 _picberry_ is a PIC programmer using GPIOs that doesn't require additional programming hardware.
 
-It theorically supports dsPIC33E/PIC24E, dsPIC33F/PIC24H, PIC24FJ, PIC18FxxJxx, PIC32MX, PIC32MZ and PIC32MK families, but only some PICs have been tested.
+It theorically supports dsPIC33E/PIC24E, dsPIC33F/PIC24H, PIC24FJ, PIC18FxxJxx, PIC32MX, PIC32MZ, PIC32MK and PIC16F150X families, but only some PICs have been tested.
 
 ### Supported hosts
 
