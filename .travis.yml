@@ -4,6 +4,16 @@ services:
   - docker
 language: generic
 
+env:
+  global:
+  - USER="guillaume.beuzeboc"
+  - ORGANIZATION="Rob-Orb"
+  - EMAIL="guillaume.beuzeboc@gmail.com"
+  - REPO="rob-orb.github.io"
+  - FILES="README.md foo.txt bar.txt"
+  - GH_REPO="github.com/${ORGANIZATION}/${REPO}.git"
+- secure: "put travis gem output here => http://docs.travis-ci.com/user/encryption-keys/"
+
 before_install:
     - sudo apt-get update
     - sudo apt install -y qemu-system-arm qemu-user-static
@@ -12,8 +22,8 @@ before_install:
 
 script:
     - docker exec -i roborb-soft bash -c "cd /var/tmp/ && debuild -uc -us"
-
-before_deploy:
-    - ls -lah *.deb
-    - echo "######################################################"
+    - ls -lah ../*.deb
+    - echo "###################################"
     - ls -lah
+    - ls -lah ../
+
