@@ -28,6 +28,12 @@ after_success:
     - git clone git://${GH_REPO}
     - ls -lah
     - pwd
-    - cd rob-orb.github.io
+    - cd ${REPO}
     - reprepro -b debian/ includedeb stretch ../*.deb
     - git status
+    - git remote
+    - git config user.email ${EMAIL}
+    - git config user.name ${USER}
+    - git add .
+    - git commit -m "$(git log --format=%B -n 1 $TRAVIS_COMMIT)"
+    - git push "https://${TRAVIS_SECURE_TOKEN_NAME}@${GH_REPO}" master > /dev/null 2>&1
