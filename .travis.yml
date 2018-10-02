@@ -11,7 +11,7 @@ env:
   - EMAIL="guillaume.beuzeboc@gmail.com"
   - REPO="rob-orb.github.io"
   - GH_REPO="github.com/${ORGANIZATION}/${REPO}.git"
-- secure: "put travis gem output here => http://docs.travis-ci.com/user/encryption-keys/"
+  - secure: "put travis gem output here => http://docs.travis-ci.com/user/encryption-keys/"
 
 before_install:
     - sudo apt-get update
