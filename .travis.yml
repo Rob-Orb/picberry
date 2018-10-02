@@ -5,6 +5,7 @@ services:
 language: generic
 
 before_install:
+    - sudo apt-get update
     - sudo apt install -y qemu-system-arm qemu-user-static
     - docker pull rosorb/soft
     - docker run -t -d --rm --name roborb-soft -v ${PWD}:/var/tmp/ roborb/soft
