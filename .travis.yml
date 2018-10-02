@@ -20,7 +20,7 @@ before_install:
     - docker run -t -d --rm --name roborb-soft -v ${PWD}/../:/var/tmp roborb/soft
 
 script:
-    - docker exec -i roborb-soft bash -c "cd /var/tmp/ && debuild -uc -us"
+    - docker exec -i roborb-soft bash -c "cd /var/tmp/picberry && debuild -uc -us"
     - echo "###################################"
     - ls -lah
     - pwd
