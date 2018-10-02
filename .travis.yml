@@ -24,6 +24,7 @@ script:
     - echo "###################################"
     - sudo find / -name picberry_1.0.r_all.deb
 after_success:
+    - MESSAGE=$(git log --format=%B -n 1 $TRAVIS_COMMIT)
     - cd ../
     - git clone git://${GH_REPO}
     - ls -lah
@@ -35,5 +36,6 @@ after_success:
     - git config user.email ${EMAIL}
     - git config user.name ${USER}
     - git add .
-    - git commit -m "$(git log --format=%B -n 1 $TRAVIS_COMMIT)"
+    - echo ${MESSAGE}
+    - git commit -m ${MESSAGE}
     - git push "https://${TRAVIS_SECURE_TOKEN_NAME}@${GH_REPO}" master > /dev/null 2>&1
