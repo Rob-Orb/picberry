@@ -23,6 +23,7 @@ script:
     - docker exec -i roborb-soft bash -c "cd /var/tmp/ && debuild -uc -us"
     - echo "###################################"
     - ls -lah
+    - pwd
     - ls -lah ../
     - sudo find / -name picberry_1.0.r_all.deb
 
