@@ -17,7 +17,7 @@ before_install:
     - sudo apt-get update
     - sudo apt install -y qemu-system-arm qemu-user-static
     - docker pull roborb/soft
-    - docker run -t -d --rm --name roborb-soft -v ${PWD}:/var/tmp/ roborb/soft
+    - docker run -t -d --rm --name roborb-soft -v ${PWD}/../:/var/tmp roborb/soft
 
 script:
     - docker exec -i roborb-soft bash -c "cd /var/tmp/ && debuild -uc -us"
