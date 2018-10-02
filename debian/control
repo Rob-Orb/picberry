@@ -6,7 +6,7 @@ Priority: optional
 Section: base
 
 Package: picberry
-Architecture: all
+Architecture: armhf
 Priority: optional
 Section: base
 Description: Pic Programmer on Raspberry Pi 
