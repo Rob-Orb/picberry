@@ -15,15 +15,19 @@ env:
 
 before_install:
     - sudo apt-get update
-    - sudo apt install -y qemu-system-arm qemu-user-static
+    - sudo apt install -y qemu-system-arm qemu-user-static git reprepro
     - docker pull roborb/soft
     - docker run -t -d --rm --name roborb-soft -v ${PWD}/../:/var/tmp roborb/soft
 
 script:
     - docker exec -i roborb-soft bash -c "cd /var/tmp/picberry && debuild -uc -us"
     - echo "###################################"
+    - sudo find / -name picberry_1.0.r_all.deb
+after_success:
+    - cd ../
+    - git clone git://${GH_REPO}
     - ls -lah
     - pwd
-    - ls -lah ../
-    - sudo find / -name picberry_1.0.r_all.deb
-
+    - cd rob-orb.github.io
+    - reprepro -b debian/ includedeb stretch ../*.deb
+    - git status
