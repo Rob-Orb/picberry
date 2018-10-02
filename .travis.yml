@@ -4,6 +4,15 @@ services:
   - docker
 language: generic
 
+env:
+  global:
+  - USER="guillaume.beuzeboc"
+  - ORGANIZATION="Rob-Orb"
+  - EMAIL="guillaume.beuzeboc@gmail.com"
+  - REPO="rob-orb.github.io"
+  - GH_REPO="github.com/${ORGANIZATION}/${REPO}.git"
+  - secure: "CMrj/ys0GoXII62NcI+Av6IqWhduSPrOyGCVTObWqprmbMe0QwUHQxSy+KMZGqFlaJ25dI6xXD7v5aa9RdEhWurZ5q41n78cdEktvUYNAjGoVC9tRL/CUCL3LQGmnQraOd0FaJWnd7ldWD04OzxgNQu/a7R5iffItgYWJYKVse8MyqTg6INzJuhq4wNbjCY6ujlIaQAizv0MzEcH4D1+igNQVWYNa3tq9LH5Xz1Nqpkay/Xqx/7Qhv2T5GCbGUQGjMrfVN31ldEGSuze7fAHiIIKuyHh0od8M9t6RGjMU/GinZC6nrz0uc4q377ROdN8IAJtgRIpDq44TU8fpepk4IYCRoedfARpnfqf50u18UapFgfsWGf+7WFtNAXKNySiYmyTQdPE4YbYJt8ORC+tuyLiZWMuYPr5Y1lMGUtesc74yC60F8lVWlYuKIZ0ZWerC2X+fFWprNeznxOJ5FpvTX9TCRXPQ1m4mXRqZ9ACRHfa8eEb24Hclkm8qYtoY7/XL2fXxPGzjCi/YnbPprfMBGpcO8+zLZg0n2NOKB43GQQxkORid3oqoqfAAEl1hFN+x6df5FAr6xTQ9bpoC92k4GlWU9v/LwEt/xcNA3F70EC7mez3jQyJgC9jIaQYfianKU+aSC3YktSV8D2iU8JTYph73SyEPV1nGN73QGFwBFw="
+
 before_install:
     - sudo apt-get update
     - sudo apt install -y qemu-system-arm qemu-user-static
@@ -12,7 +21,7 @@ before_install:
 
 script:
     - docker exec -i roborb-soft bash -c "cd /var/tmp/ && debuild -uc -us"
-    - ls -lah
     - echo "###################################"
+    - ls -lah
     - ls -lah ../
 
