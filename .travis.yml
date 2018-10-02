@@ -15,12 +15,9 @@ env:
 
 before_install:
     - sudo apt-get update
-    - sudo apt install -y qemu-system-arm qemu-user-static git reprepro gnupg
+    - sudo apt install -y qemu-system-arm qemu-user-static git reprepro
     - docker pull roborb/soft
     - docker run -t -d --rm --name roborb-soft -v ${PWD}/../:/var/tmp roborb/soft
-    - wget http://rob-orb.github.io/debian/private.asc.enc
-    - openssl aes-256-cbc -K $encrypted_0a6446eb3ae3_key -iv $encrypted_0a6446eb3ae3_iv -in private.asc.enc -out private.asc -d
-    - gpg --allow-secret-key-import --import private.key
 
 script:
     - docker exec -i roborb-soft bash -c "cd /var/tmp/picberry && debuild -uc -us"
