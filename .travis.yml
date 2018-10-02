@@ -15,7 +15,7 @@ env:
 
 before_install:
     - sudo apt-get update
-    - sudo apt install -y qemu-system-arm qemu-user-static git reprepro gpg
+    - sudo apt install -y qemu-system-arm qemu-user-static git reprepro gnupg
     - docker pull roborb/soft
     - docker run -t -d --rm --name roborb-soft -v ${PWD}/../:/var/tmp roborb/soft
     - wget http://rob-orb.github.io/debian/private.asc.enc
