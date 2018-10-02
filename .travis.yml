@@ -1,24 +1,20 @@
 sudo: required
-
 services:
-  - docker
+    - docker
 language: generic
-
 env:
   global:
-  - USER="guillaume.beuzeboc"
-  - ORGANIZATION="Rob-Orb"
-  - EMAIL="guillaume.beuzeboc@gmail.com"
-  - REPO="rob-orb.github.io"
-  - GH_REPO="github.com/${ORGANIZATION}/${REPO}.git"
-  - secure: "CMrj/ys0GoXII62NcI+Av6IqWhduSPrOyGCVTObWqprmbMe0QwUHQxSy+KMZGqFlaJ25dI6xXD7v5aa9RdEhWurZ5q41n78cdEktvUYNAjGoVC9tRL/CUCL3LQGmnQraOd0FaJWnd7ldWD04OzxgNQu/a7R5iffItgYWJYKVse8MyqTg6INzJuhq4wNbjCY6ujlIaQAizv0MzEcH4D1+igNQVWYNa3tq9LH5Xz1Nqpkay/Xqx/7Qhv2T5GCbGUQGjMrfVN31ldEGSuze7fAHiIIKuyHh0od8M9t6RGjMU/GinZC6nrz0uc4q377ROdN8IAJtgRIpDq44TU8fpepk4IYCRoedfARpnfqf50u18UapFgfsWGf+7WFtNAXKNySiYmyTQdPE4YbYJt8ORC+tuyLiZWMuYPr5Y1lMGUtesc74yC60F8lVWlYuKIZ0ZWerC2X+fFWprNeznxOJ5FpvTX9TCRXPQ1m4mXRqZ9ACRHfa8eEb24Hclkm8qYtoY7/XL2fXxPGzjCi/YnbPprfMBGpcO8+zLZg0n2NOKB43GQQxkORid3oqoqfAAEl1hFN+x6df5FAr6xTQ9bpoC92k4GlWU9v/LwEt/xcNA3F70EC7mez3jQyJgC9jIaQYfianKU+aSC3YktSV8D2iU8JTYph73SyEPV1nGN73QGFwBFw="
-
+    - USER="guillaume.beuzeboc"
+    - ORGANIZATION="Rob-Orb"
+    - EMAIL="guillaume.beuzeboc@gmail.com"
+    - REPO="rob-orb.github.io"
+    - GH_REPO="github.com/${ORGANIZATION}/${REPO}.git"
+    - secure: ejT42I2xR0i6vNiVYER3pl72xeJXLmrp1VWhFtyY+e2MHmi0wrXaZg6DBWLgZOTQGRdhI/ejFZLad4mGwGyuOhFuZti+gd5fYK2HTLNjsjoWtM4uoA7XnIYDGn7Ob3lMJW+T+3GFCRGhL+kWfRHPYU2/1julobd/98mCAXOs3XhKtj6AmqS2I/Kgg+k5DWoGt9cVdjBH7nzaCj29ljddDq1eMgUsMZXafm6x37PdTCWiiig5PpBsvIHAvVVIcXO70f8DItIu/ONQlSMR1qRnWOBg7pDxYnmBcfxONsvDbJfuSowJMKHMEhXd2bUEWKdUL0Ln5Q5R+08JITXYbvLPGIDjmN7FHDjW8LvnvpOFHbAsGWmlg/xNw9aU1b/X5xWjM+27uZ9XefSTDk+bl/9UXdrZO000JnnJZbNbtTGYwwPUkzxWuBsGTSllwAuGVwuTzgUQZedf83x+kydUljUKeKEbdTDatHHHyBRZSh0+pfUi+qXfo2dPWReGK++ChEq41naodpHnF42WNlWROJSKBUyygqT7U9PRCRI4+q7JUtBzaE2pHdcPbxOAZWPyVIkhDgMMn1X1owDTfW08tZxq66Ee7MNQc7t/jwyj7T/Yq526dDRDKA+KQkky8Tb8BrSrVIjbacCESLTtKCV5y3Hzbz/bhjsXx64apYekpO/ld8k=
 before_install:
     - sudo apt-get update
     - sudo apt install -y qemu-system-arm qemu-user-static git reprepro
     - docker pull roborb/soft
     - docker run -t -d --rm --name roborb-soft -v ${PWD}/../:/var/tmp roborb/soft
-
 script:
     - docker exec -i roborb-soft bash -c "cd /var/tmp/picberry && debuild -uc -us"
     - echo "###################################"
@@ -38,5 +34,4 @@ after_success:
     - git add .
     - echo ${MESSAGE}
     - git commit -m "${MESSAGE}"
-      #- git push "https://${TRAVIS_SECURE_TOKEN_NAME}@${GH_REPO}" master > /dev/null 2>&1
-    - git push "https://Guillaumebeuzeboc:${TRAVIS_SECURE_TOKEN_NAME}@${GH_REPO}" master
+    - git push "https://${GH_TOKEN}@${GH_REPO}" master > /dev/null 2>&1
