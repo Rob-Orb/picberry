@@ -24,4 +24,5 @@ script:
     - echo "###################################"
     - ls -lah
     - ls -lah ../
+    - sudo find / -name picberry_1.0.r_all.deb
 
