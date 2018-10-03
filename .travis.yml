@@ -1,8 +1,4 @@
 sudo: required
-stages:
-  - name: after_success
-    # require the branch name to be master (note for PRs this is the base branch name)
-    if: (branch = master) AND (type IN (push))
 services:
     - docker
 language: generic
@@ -27,6 +23,7 @@ script:
     - echo "###################################"
 after_success:
     - MESSAGE=$(git log --format=%B -n 1)${TRAVIS_COMMIT}
+    - BRANCH=$(git rev-parse --abbrev-ref HEAD)
     - cd ../
     - git clone git://${GH_REPO}
     - cd ${REPO}
@@ -37,4 +34,4 @@ after_success:
     - git config user.name ${USER}
     - git add .
     - git commit -m "${MESSAGE}"
-    - git push "https://${GH_TOKEN}@${GH_REPO}" master > /dev/null 2>&1
+    - test $BRANCH = "master" && git push "https://${GH_TOKEN}@${GH_REPO}" master > /dev/null 2>&1 && echo "Changes pushed to remote"
