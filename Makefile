@@ -5,7 +5,7 @@
 CC = $(CROSS_COMPILE)g++
 CFLAGS = -Wall -O2 -s -std=c++11
 TARGET = picberry
-PREFIX = /usr
+PREFIX = /usr/local
 BINDIR = $(PREFIX)/bin
 SRCDIR = src
 BUILDDIR = build
