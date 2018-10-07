@@ -1,7 +1,7 @@
 Source: picberry
 Maintainer: Ulysse Vautier <ulysse.vautier@gmail.com>
 Build-Depends: debhelper (>= 8.0.0)
-Standards-Version: 1.1.r
+Standards-Version: 1.1.1
 Priority: optional
 Section: base
 

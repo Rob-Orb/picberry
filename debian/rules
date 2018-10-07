@@ -4,4 +4,4 @@
 override_dh_auto_build:
 	dh_auto_build -- raspberrypi
 override_dh_auto_install:
-	install -D -m 0755 picberry $$(pwd)/debian/picberry/usr/local/bin
+	install -D -m 0755 picberry $$(pwd)/debian/usr/local/bin
