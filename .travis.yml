@@ -26,7 +26,7 @@ after_success:
     - cd ../
     - git clone git://${GH_REPO}
     - cd ${REPO}
-    - reprepro -b debian/ includedeb stretch ../*.deb && robotorb
+    - reprepro -b debian/ includedeb stretch ../*.deb
     - git status
     - git remote
     - git config user.email ${EMAIL}
