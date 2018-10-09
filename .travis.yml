@@ -15,23 +15,24 @@ before_install:
     - openssl aes-256-cbc -k $passcode_repo -in private.asc.enc -out private.asc -d
     - sudo apt-get update
     - sudo apt install -y qemu-system-arm qemu-user-static git reprepro rng-tools gnupg
-    - gpg --allow-secret-key-import --import private.asc
-    - docker pull roborb/soft
-    - docker run -t -d --rm --name roborb-soft -v ${PWD}/../:/var/tmp roborb/soft
-script:
-    - docker exec -i roborb-soft bash -c "cd /var/tmp/picberry && debuild -uc -us"
-after_success:
-    - MESSAGE=$(git log --format=%B -n 1)${TRAVIS_COMMIT}
-    - BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
-    - cd ../
-    - git clone git://${GH_REPO}
-    - cd ${REPO}
-    - reprepro -b debian/ includedeb stretch ../*.deb
-    - git status
-    - git remote
-    - git config user.email ${EMAIL}
-    - git config user.name ${USER}
-    - git add .
-    - git commit -m "${MESSAGE}"
-    - echo $BRANCH
-    - test $BRANCH = "master" && git push "https://${GH_TOKEN}@${GH_REPO}" master > /dev/null 2>&1 && echo "Changes pushed to remote"
+    - cat ~/.gnupg/gpg.conf
+#    - gpg --allow-secret-key-import --import private.asc
+#    - docker pull roborb/soft
+#    - docker run -t -d --rm --name roborb-soft -v ${PWD}/../:/var/tmp roborb/soft
+#script:
+#    - docker exec -i roborb-soft bash -c "cd /var/tmp/picberry && debuild -uc -us"
+#after_success:
+#    - MESSAGE=$(git log --format=%B -n 1)${TRAVIS_COMMIT}
+#    - BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
+#    - cd ../
+#    - git clone git://${GH_REPO}
+#    - cd ${REPO}
+#    - reprepro -b debian/ includedeb stretch ../*.deb
+#    - git status
+#    - git remote
+#    - git config user.email ${EMAIL}
+#    - git config user.name ${USER}
+#    - git add .
+#    - git commit -m "${MESSAGE}"
+#    - echo $BRANCH
+#    - test $BRANCH = "master" && git push "https://${GH_TOKEN}@${GH_REPO}" master > /dev/null 2>&1 && echo "Changes pushed to remote"
