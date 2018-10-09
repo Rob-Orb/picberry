@@ -14,7 +14,7 @@ before_install:
     - wget https://rob-orb.github.io/debian/private.asc.enc
     - openssl aes-256-cbc -k $passcode_repo -in private.asc.enc -out private.asc -d
     - sudo apt-get update
-    - sudo apt install -y qemu-system-arm qemu-user-static git reprepro gnupg
+    - sudo apt install -y qemu-system-arm qemu-user-static git reprepro rng-tools gnupg
     - gpg --allow-secret-key-import --import private.asc
     - docker pull roborb/soft
     - docker run -t -d --rm --name roborb-soft -v ${PWD}/../:/var/tmp roborb/soft
