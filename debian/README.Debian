@@ -1,5 +1,5 @@
-picberry (0.0.1-1) stable; urgency=low
+picberry for Debian
 
-  * Initial release.
+Pogrammer for the pic using the Raspberry Pi
 
  -- Ulysse Vautier (Rob-Orb) <ulysse.vautier@gmail.com>  Wed, 10 Oct 2018 10:04:18 +0000

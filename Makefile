@@ -5,8 +5,8 @@
 CC = $(CROSS_COMPILE)g++
 CFLAGS = -Wall -O2 -s -std=c++11
 TARGET = picberry
-PREFIX = /usr/local
-BINDIR = $(PREFIX)/bin
+PREFIX = $(DESTDIR)/usr/local
+BINDIR = $(DESTDIR)$(PREFIX)/bin
 SRCDIR = src
 BUILDDIR = build
 MKDIR = mkdir -p
@@ -49,7 +49,7 @@ $(BUILDDIR)/devices/%.o: $(SRCDIR)/devices/%.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 install:
-	install -m 0755 $(TARGET) $(BINDIR)/$(TARGET)
+	install -D -m 0755 $(TARGET) $(BINDIR)/$(TARGET)
 
 uninstall:
 	$(RM) $(BINDIR)/$(TARGET)
