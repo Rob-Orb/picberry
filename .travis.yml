@@ -21,7 +21,7 @@ before_install:
     - docker pull roborb/soft
     - docker run -t -d --rm --name roborb-soft -v ${PWD}/../:/var/tmp roborb/soft
 script:
-    - docker exec -i roborb-soft bash -c "export DEBFULLNAME='Ulysse Vautier (Rob-Orb)' && export DEBMAIL=ulysse.vautier@gmail.com && sudo apt update && sudo apt install vim debmake && cd /var/tmp/picberry && dch -i && debmake -t && debuild -uc -us"
+    - docker exec -i roborb-soft bash -c "export DEBFULLNAME='Ulysse Vautier (Rob-Orb)' && export DEBMAIL=ulysse.vautier@gmail.com && sudo apt update && sudo apt install vim debmake && cd /var/tmp/picberry && dch -i --distribution stable 'See git commit' && debmake -t && debuild -uc -us"
 after_success:
     - MESSAGE=$(git log --format=%B -n 1)${TRAVIS_COMMIT}
     - BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
