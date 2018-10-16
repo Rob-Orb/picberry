@@ -23,8 +23,12 @@ before_install:
 script:
     - docker exec -i roborb-soft bash -c "cd /var/tmp/picberry && fakeroot debian/rules binary"
 after_success:
-    - MESSAGE=$(git log --format=%B -n 1)${TRAVIS_COMMIT}
+    - echo $TRAVIS_TAG
+    - if [ -z "$TRAVIS_TAG" ]; then exit 0; fi
     - BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
+    - echo $BRANCH
+    - if [ $BRANCH != "master" ]; then exit 0; fi
+    - MESSAGE=$(git log --format=%B -n 1)${TRAVIS_COMMIT}
     - cd ../
     - git clone git://${GH_REPO}
     - cd ${REPO}
@@ -35,5 +39,4 @@ after_success:
     - git config user.name ${USER}
     - git add .
     - git commit -m "${MESSAGE}"
-    - echo $BRANCH
-    - test $BRANCH = "master" && git push "https://${GH_TOKEN}@${GH_REPO}" master > /dev/null 2>&1 && echo "Changes pushed to remote"
+    - git push "https://${GH_TOKEN}@${GH_REPO}" master > /dev/null 2>&1 && echo "Changes pushed to remote"
